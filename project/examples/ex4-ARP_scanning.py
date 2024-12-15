@@ -1,12 +1,11 @@
 from scapy.all import ARP, Ether, srp
 
-ip_range = "192.168.0.0/24" # MAKE THIS THE INPUT
-network_address = input("Insert the network IP address (format: A.B.C.D): ")
-subnet = input("Insert the subnet mask value: (format: number): ")
+network_address = input("Insert the network IP address (format: A.B.C.D): ").strip()
+subnet = input("Insert the subnet mask value: (format: number): ").strip()
 target = f"{network_address}/{subnet}"
 
 # Creating the ARP request
-packet = Ether(dst="ff:ff:ff:ff:ff:ff") / ARP(pdst=ip_range)
+packet = Ether(dst="ff:ff:ff:ff:ff:ff") / ARP(pdst=target)
 
 print(f"Scanning {target} network...")
 
