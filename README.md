@@ -42,12 +42,15 @@ Pristup koji se može predložiti prilikom rada sa Scapy-em je korišćenje i [R
 
 ### Konkurentna rešenja
 - **Wireshark** 
+
 Vizuelni alat za analizu mrežnog saobraćaja. Njegova prednost je jednostavnost korišćenja i ugrađene funkcionalnosti koje omogućavaju detaljnu analizu celokupnog mrežnog saobraćaja (npr. statistika, filtriranje i dekodiranje protokola). Mana mu je što može biti sporiji pri radu sa velikim količinama podataka. Takođe, za napredne korisnike koji žele da modifikuju ili generišu pakete u realnom vremenu, Scapy pruža neophodnu fleksibilnost
 
 - **Pyshark** 
+
 Python biblioteka zasnovana na Wireshark-u, koja omogućava analizu mrežnog saobraćaja kroz Python skripte. Prednosti Pyshark-a uključuju lakoću integracije sa Python-om i automatsku obradu mrežnih podataka korišćenjem ugrađenih funkcija. Međutim, u poređenju sa Scapy-em, Pyshark je ograničen kada je u pitanju kreiranje i prilagođavanje mrežnih paketa, jer je primarno fokusiran na pasivnu analizu saobraćaja. Ovo  ograničava njegovu primenu u nekim sigurnosnim testiranjima ili istraživanjima mrežnih protokola
 
 - **Tshark** 
+
 Tshark predstavlja CLI verziju Wireshark-a. Pogodan je za korišćenje u headless okruženjima, kao i snimanje i analizu mrežnog saobraćaja uz upotrebu brojnih filtera. Njegove mane su slične kao i za Wireshark i Pyshark, tj. nedovoljna fleksibilnost
 
 Wireshark, Pyshark i Tshark nisu direktni konkurenti u svim slučajevima, jer su više orijentisani na pasivnu analizu, dok je Scapy alat koji omogućava i aktivnu manipulaciju mrežnim paketima.
@@ -108,7 +111,7 @@ Funkcija za dobijanje MAC adrese trenutnog interfejsa
 
 **1) Importovanje:**
 ```py
-from scapy.all import *protokol ili funkcija*
+from scapy.all import <protokol_ili_funkcija>
 ```
 - Primer:
 ```py
@@ -256,7 +259,7 @@ deactivate
 
 `sudo apt install wireshark`
 
-Napomena: Pokretanje Wireshark-a na Linux-u često zahteva sudo privilegije.
+Napomena: Pokretanje Wireshark-a na Linux-u često zahteva `sudo` privilegije.
 
 2) Windows: 
 
