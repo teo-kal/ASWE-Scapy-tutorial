@@ -14,43 +14,41 @@ def proto_name_by_num(proto_num):
 packet = IP(dst="www.google.com") / ICMP()
 
 # 2. Send the packet and receive the response:
-response = sr1(packet, timeout=1)
+single_response = sr1(packet, timeout=1)
+print(single_response)
 
-print(response)
-
-response = sr(packet, timeout=1)
-
-answered, unanswered = response
+answered, unanswered = sr(packet, timeout=1)
 
 print(answered)
-for packet in answered:
+for sent, received in answered:
     print("INFO:")
-    print(packet[0])
-    print(packet[1])
+    print(sent)
+    print(received)
 print("=====")
-if response:
+
+if single_response:
     # 3. Show the response:
-    response.show()
+    single_response.show()
 
     # 4. Show specific fields:
     print("IP info:")
-    print(response[IP])
+    print(single_response[IP])
 
-    print(f"IP version: {response[IP].version}")
+    print(f"IP version: {single_response[IP].version}")
                                                 
-    protocol_number = response[IP].proto                # Shows the protocol number: https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers
+    protocol_number = single_response[IP].proto                # Shows the protocol number: https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers
     protocol_name = proto_name_by_num(protocol_number)  # 1 <-> ICMP
     print(f"Protocol number: {protocol_number}. Protocol name: {protocol_name}")
    
-    print(f"Source: {response[IP].src}")
-    print(f"Destination: {response[IP].dst}")
+    print(f"Source: {single_response[IP].src}")
+    print(f"Destination: {single_response[IP].dst}")
     
     print("--------------------------------------------------------------------------------")
 
     print("ICMP info:")
-    print(response[ICMP])
+    print(single_response[ICMP])
     
-    print(f"Type: {response[ICMP].type}")
+    print(f"Type: {single_response[ICMP].type}")
 else:
     print("No response received.")
 
