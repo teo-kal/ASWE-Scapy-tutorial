@@ -12,74 +12,86 @@ ___
 ___
 
 ## Scapy overview
-**Scapy** je Python biblioteka namenjena manipulaciji i analizi mrežnog saobraćaja, pružajući interfejs za *libpcap* biblioteku i ,,native raw'' socket-e. *Libpcap* je biblioteka koja omogućava presretanje i snimanje mrežnog saobraćaja na niskom nivou, dok ,,raw'' socket-i omogućavaju slanje i primanje 'sirovih' (neobrađenih) mrežnih paketa.
 
-Scapy omogućava korisnicima da kreiraju, šalju, primaju i analiziraju mrežne pakete uz visoku kontrolu nad njihovom strukturom i sadržajem.
+**Scapy** je Python biblioteka namenjena manipulaciji i analizi mrežnog saobraćaja, koja omogućava rad sa *raw socket*-ima i može koristiti biblioteke poput *libpcap* za snimanje saobraćaja.
+
+*Libpcap* je biblioteka koja omogućava presretanje i snimanje mrežnog saobraćaja na niskom nivou, dok ,,raw'' socket-i omogućavaju slanje i primanje ,,sirovih'' (neobrađenih) mrežnih paketa.
+
+Neke od mogućnosti koje Scapy pruža su kreiranje, slanje, primanje i analiziranje mrežnih paketa uz visoku kontrolu nad njihovom strukturom i sadržajem.
 
 Uz podršku za veliki broj mrežnih protokola, kao što su Ethernet, IP, TCP, UDP, ICMP, itd, Scapy pruža fleksibilnost i funkcionalnosti koje prevazilaze mogućnosti klasičnih mrežnih alata.
 
-Ključne mogućnosti Scapy-a uključuju:
-- Kreiranje mrežnih paketa uz mogućnost podešavanja polja definisanih prema RFC standardima
-- Detaljnu analizu mrežnih paketa za otkrivanje potencijalnih problema ili anomalija
-- Automatizaciju kompleksnih mrežnih zadataka korišćenjem Python skripti
+Scapy je koristan alat u oblastima mrežne administracije, sajber bezbednosti i istraživanja mrežnih protokola. Omogućava jednostavan, ali detaljan rad sa mrežnim saobraćajem na niskom nivou.
 
-Scapy je koristan alat u oblasti mrežne administracije, sajber bezbednosti i istraživanja mrežnih protokola, omogućavajući jednostavan i detaljan rad sa mrežnim saobraćajem na niskom nivou.
+### Ključne mogućnosti koje pruža Scapy
+
+- Kreiranje mrežnih paketa uz detaljno podešavanje polja u skladu sa [RFC standardima](https://www.rfc-editor.org/standards) 
+- Analiza mrežnih paketa u cilju otkrivanja potencijalnih problema ili anomalija
+- Automatizaciju složenih mrežnih zadataka putem Python skripti
 
 ### Prednosti
+
 - Fleksibilnost u kreiranju i analizi prilagođenih paketa
 - Podrška za veliki broj protokola
 - Integracija sa Python-om omogućava jednostavnu automatizaciju
 
 ### Mane
-- Zahteva razumevanje mrežnih protokola
+
+- Zahteva razumevanje mrežnih protokola i njihovih struktura
 - Ne poseduje grafički interfejs, što može otežati upotrebu početnicima
-- Potrebno je dodatno istražiti protokole, npr. korišćenjem RFC dokumentacije koja ih definiše 
+- Potrebno je dodatno istraživanje mrežnih protokola, što često uključuje čitanje [RFC dokumentacije](https://www.rfc-editor.org/standards)
 
-### Problem koji rešava
-Scapy je alat koji omogućava analizu i manipulaciju mrežnim saobraćajem. Tradicionalni alati poput Wiresharka fokusiraju se na pasivnu analizu, Scapy omogućava i aktivnu manipulaciju paketima, što ga čini korisnim za obavljanje složenijih zadataka u mrežnoj bezbednosti. Aktivna manipulacija pruža veću kontrolu nad paketima, ali zahteva i poznavanje računarskih mreža i protokola. Takođe, Scapy pruža već definisan set brojnih protokola, što dodatno olakšava rad.
+### Problem koji Scapy rešava
 
-Pristup koji se može predložiti prilikom rada sa Scapy-em je korišćenje i [RFC](https://en.wikipedia.org/wiki/Request_for_Comments) dokumentacije koja detaljno definiše mrežne protokole, s obzirom da je u nekim trenucima neophodno menjati specifičnija polja, kao što su flegovi. 
+Scapy je alat koji omogućava analizu i manipulaciju mrežnim saobraćajem. Za razliku od tradicionalnih alata poput Wireshark-a, koji su fokusirani na pasivnu analizu, Scapy nudi i aktivnu manipulaciju paketa - tj. korisnik može samostalno kreirati, menjati i slati pakete. Aktivna manipulacija pruža veću kontrolu nad paketima, ali zahteva i poznavanje računarskih mreža i protokola. Takođe, Scapy pruža već definisan set brojnih protokola, što dodatno olakšava rad.
+
+Tokom rada sa Scapy-em se preporučuje i korišćenje [RFC dokumentacije](https://www.rfc-editor.org/standards) koja detaljno definiše mrežne protokole, s obzirom da je u nekim trenucima neophodno menjati specifičnija polja, kao što su zaglavlja i flegovi. 
 
 ### Konkurentna rešenja
+
 - **Wireshark** 
 
-Vizuelni alat za analizu mrežnog saobraćaja. Njegova prednost je jednostavnost korišćenja i ugrađene funkcionalnosti koje omogućavaju detaljnu analizu celokupnog mrežnog saobraćaja (npr. statistika, filtriranje i dekodiranje protokola). Mana mu je što može biti sporiji pri radu sa velikim količinama podataka. Takođe, za napredne korisnike koji žele da modifikuju ili generišu pakete u realnom vremenu, Scapy pruža neophodnu fleksibilnost
+Vizuelni alat za analizu mrežnog saobraćaja. Njegove prednosti uključuju intuitivan interfejs, razne opcije za filtriranje i statistiku, kao i dekodiranje protokola. Glavni nedostaci su nemogućnost aktivne manipulacije paketa, kao i ograničenja u brzini pri radu sa velikim količinama podataka.
 
 - **Pyshark** 
 
-Python biblioteka zasnovana na Wireshark-u, koja omogućava analizu mrežnog saobraćaja kroz Python skripte. Prednosti Pyshark-a uključuju lakoću integracije sa Python-om i automatsku obradu mrežnih podataka korišćenjem ugrađenih funkcija. Međutim, u poređenju sa Scapy-em, Pyshark je ograničen kada je u pitanju kreiranje i prilagođavanje mrežnih paketa, jer je primarno fokusiran na pasivnu analizu saobraćaja. Ovo  ograničava njegovu primenu u nekim sigurnosnim testiranjima ili istraživanjima mrežnih protokola
+Python biblioteka zasnovana na Wireshark-u, koja omogućava analizu mrežnog saobraćaja kroz Python skripte. Prednosti Pyshark-a uključuju lakoću integracije sa Python-om i automatsku obradu mrežnih podataka korišćenjem ugrađenih funkcija. Međutim, Pyshark je ograničen kada je u pitanju kreiranje i prilagođavanje mrežnih paketa, jer je primarno fokusiran na pasivnu analizu saobraćaja. Ovo ograničava njegovu primenu u nekim sigurnosnim testiranjima ili istraživanjima mrežnih protokola
 
 - **Tshark** 
 
-Tshark predstavlja CLI verziju Wireshark-a. Pogodan je za korišćenje u headless okruženjima, kao i snimanje i analizu mrežnog saobraćaja uz upotrebu brojnih filtera. Njegove mane su slične kao i za Wireshark i Pyshark, tj. nedovoljna fleksibilnost
+Tshark predstavlja CLI verziju Wireshark-a. Pogodan je za korišćenje u headless okruženjima, automatizaciju, kao i snimanje i analizu mrežnog saobraćaja uz korišćenje filtera. Iako je moćan za pasivnu analizu, ne nudi fleksibilnost potrebnu za modifikaciju saobraćaja
 
 Wireshark, Pyshark i Tshark nisu direktni konkurenti u svim slučajevima, jer su više orijentisani na pasivnu analizu, dok je Scapy alat koji omogućava i aktivnu manipulaciju mrežnim paketima.
 
-Osim navedenih, postoje i dodatni alati koji se mogu navesti kao konkurentna rešenja Scapy-u, kao što su **Netcat**, **Nmap**, **Ettercap** i drugi. Međutim, ovi alati imaju specifičniju primenu, te ih ne treba direktno upoređivati sa Scapy-em.
+Osim navedenih, postoje i dodatni alati koji se mogu navesti, kao što su **Netcat**, **Nmap**, **Ettercap** i drugi. Međutim, ovi alati imaju specifičniju primenu, te ih ne treba direktno upoređivati sa Scapy-em.
 ___
 
 ## Tehnologije i alati
-Iako je naveden kao konkurentno rešenje, u ovom projektu je korišćen Wireshark za snimanje saobraćaja prilikom testiranja. U nastavku se, nakon osnovnih informacija o Scapy-u može naći i neophodan pregled funkcionalnosti Wireshark-a.
+
+Iako je naveden kao konkurentno rešenje, u ovom projektu je korišćen Wireshark za snimanje saobraćaja tokom testiranja. U nastavku, nakon osnovnih informacija o Scapy-u, nalazi se i pregled ključnih funkcionalnosti Wireshark-a.
 
 Tehnologije i alati koji su korišćeni:
-- Python (v3.12.3)
+- Python (v3.13.3)
 - Scapy (v2.6.1)
-- Wireshark (v4.2.2)
+- Wireshark (v4.4.6)
 
-Projekat je razvijan i testiran na Linux platformi (Kubuntu), te će uputstvo za instalaciju i pokretanje uključivati korake za Linux, kao i za Windows operativni sistem.
+Projekat je razvijan i testiran na Linux platformi (EndeavourOS), te će uputstvo za instalaciju i pokretanje uključivati korake za Linux, kao i za Windows operativni sistem.
 
 ### ⚠️ NAPOMENA!
+
 **Korišćenje alata poput Scapy-a i Wireshark-a za prisluškivanje, analizu ili manipulaciju mrežnog saobraćaja nije legalno na javnim mrežama niti bez dozvole vlasnika mreže. Navedene aktivnosti mogu prekršiti zakone o zaštiti privatnosti i informacionoj bezbednosti, kao što je Krivični zakonik Republike Srbije. Pre upotrebe ovih alata je neophodno informisanje o važećim zakonima i pribavljanje potrebne dozvole kako bi se izbegli potencijalni pravni problemi. Ovaj projekat je namenjen isključivo u edukativne svrhe i realizovan na ličnoj mreži.**
 
 **Takođe, treba imati u vidu da se Scapy može iskoristiti u maliciozne svrhe što, u zavisnosti od tipova uređaja, može dovesti do štete kao što je prekid servisa. Neophodno je razumeti šta skripte rade pre njihovog pokretanja, što podrazumeva i adekvatan nivo poznavanja računarskih mreža.**
 
 ### Scapy 101
+
 Konkretniji primeri će biti obrađeni u okviru samog projekta, ali i oni mogu poslužiti kao uvod u Scapy.
 U nastavku se može videti osnovna funkcionalnost Scapy-a:
 
-**0) Lista nekih protokola i funkcija:**
+**0) Lista pojedinih protokola i funkcija:**
 
-Protokoli koji se mogu iskoristiti su: Ether, ARP, IP, ICMP, TCP, UDP, DHCP, itd.
+Protokoli koji se mogu iskoristiti su: `Ether`, `ARP`, `IP`, `ICMP`, `TCP`, `UDP`, `DHCP`, itd.
+
 Neke od osnovnih funkcija: 
 - `send()`, `sendp()`
 
@@ -87,11 +99,11 @@ Funkcija `send()` se koristi za slanje paketa na 3. sloju, dok se funkcija `send
 
 - `sr()`, `sr1()`, `srp()` 
 
-Funkcija `sr()` se koristi za slanje paketa i primanje odgovora. Funkcija vraća par paketa i odgovora, kao i pakete koji nisu dobili odgovore. Funkcija `sr1()` služi za slanje, ali prima samo jedan paket tj. odgovor. Protokoli moraju biti sa 3. sloja (kao što je IP). Za 2. sloj se koristi funkcija `srp()`. Ukoliko odgovor ne postoji, dodeljuje se `None` vrednost nakon timeout perioda
+Funkcija `sr()` se koristi za slanje paketa i primanje odgovora. Funkcija vraća par (tuple) paketa i odgovora, kao i pakete koji nisu dobili odgovore. Funkcija `sr1()` služi za slanje, ali prima samo jedan paket tj. odgovor. Protokoli moraju biti sa 3. sloja (kao što je `IP`). Za 2. sloj se koristi funkcija `srp()`. Ukoliko odgovor ne postoji, dodeljuje se `None` vrednost nakon timeout perioda
 
 - `ls()`
 
-Služi za prikazivanje dostupnih slojeva ili davanje informacija o konkretnom sloju
+Služi za prikazivanje dostupnih slojeva ili prikaz informacija o konkretnom sloju
 
 - `sniff()`
 
@@ -166,7 +178,7 @@ U sledećem isečku koda je moguće videti kako se kreira jednostavan ICMP (ping
 from scapy.all import IP, ICMP, sr1
 
 # Kreiranje ping paketa
-packet = IP(dst="<destinacija>") / ICMP()
+packet = IP(dst="<ip_adresa>") / ICMP()
 
 # Slanje paketa i primanje odgovora - sr()
 response = sr(packet, timeout=1)
@@ -202,7 +214,7 @@ Wireshark sadrži brojne funkcionalnosti, od statistike do filtriranja saobraća
 
 1) Na Windows sistemu se Wireshark može pokrenuti kao bilo koji program, dok je na Linux platformama potrebno pokrenuti ga sa `sudo` privilegijama: `sudo wireshark`
 
-2) U glavnom prozoru se mogu videti dostupni interfejsi. Treba odabrati interfejs na kome se vidi aktivnost na grafikonu sa desne strane, što su najčešće `eth` ili `wlan` interfejsi. Klikom na odgovarajući interfejs se započinje presretanje saobraćaja. Na slici se može videti primer interfejsa, konkretno `enp34s0` na korišćenom Linux sistemu:
+2) U okviru glavnog prozora se mogu videti dostupni mrežni interfejsi. Treba odabrati interfejs na kome se vidi aktivnost na grafikonu sa desne strane, što su najčešće `eth` ili `wlan` interfejsi. Klikom na odgovarajući interfejs se započinje presretanje saobraćaja. Na slici se može videti primer interfejsa, konkretno `enp34s0` na korišćenom Linux sistemu:
 
 ![Primer interfejsa na Linux platformi](./images/image-wireshark-interfaces.png)
 
@@ -212,7 +224,7 @@ Wireshark sadrži brojne funkcionalnosti, od statistike do filtriranja saobraća
 
 4) Fajl sa presretnutim paketima se može sačuvati odabirom opcije `File` > `Save` i unošenjem željenog imena. Neke od ekstenzija koje se mogu odabrati su `.pcap` i `.pcapng` 
 
-Dodatna dokumentacija o Wireshark-u se može naći na [linku](https://www.wireshark.org/docs/)
+Dodatna dokumentacija o Wireshark-u se može naći na [sledećem linku](https://www.wireshark.org/docs/)
 ___
 
 ## Instalacija
@@ -259,11 +271,13 @@ deactivate
 
 `sudo apt install wireshark`
 
-Napomena: Pokretanje Wireshark-a na Linux-u često zahteva `sudo` privilegije.
+`sudo pacman -S wireshark-qt`
+
+**Napomena:** Pokretanje Wireshark-a na Linux-u često zahteva `sudo` privilegije.
 
 2) Windows: 
 
-Wireshark se može preuzeti sa sledećeg linka: https://www.wireshark.org/download.html 
+Wireshark se može preuzeti sa [sledećeg linka](https://www.wireshark.org/download.html) 
 ___
 
 ## Projekti
@@ -300,7 +314,7 @@ ___
 - Zvanična stranica - https://scapy.net/
 - Dokumentacija - https://scapy.readthedocs.io/en/latest/
 ### IETF (Internet Engineering Task Force) standardi i RFC dokumentacija: 
-- https://datatracker.ietf.org/
+- https://www.rfc-editor.org/standards
 ### Wireshark:  
 - Zvanična stranica: https://www.wireshark.org/  
 - Dokumentacija: https://www.wireshark.org/docs/
