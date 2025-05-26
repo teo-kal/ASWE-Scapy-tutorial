@@ -1,6 +1,6 @@
 from scapy.all import rdpcap, Ether, IP, TCP, UDP, DNS, ARP, ICMP, BOOTP, STP, IP, IPv6
 
-# Učitaj PCAP fajl
+# Load network capture file
 packets = rdpcap("./project/pcaps/FIRST-2015_Hands-on_Network_Forensics_PCAP/2015-04-13/snort.log.1428883207")
 
 protocols = {

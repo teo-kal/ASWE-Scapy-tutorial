@@ -10,7 +10,8 @@ try:
     syn_ack_response = sr1(syn_packet, timeout=1)
 
     if syn_ack_response:
-        if "SA" in syn_ack_response[TCP].flags:
+        #if "SA" in syn_ack_response[TCP].flags:
+        if syn_ack_response[TCP].flags == "SA":
             print("(+) SYN-ACK response received successfully")
         else:
             print("(-) Unexpected flags received:", syn_ack_response[TCP].flags)
